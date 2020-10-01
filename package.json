@@ -1,0 +1,34 @@
+{
+  "name": "api-marketplace",
+  "version": "1.0.0",
+  "description": "Api Marketplace",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vn-pereira/API_marketplace-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vn-pereira/API_marketplace-/issues"
+  },
+  "homepage": "https://github.com/vn-pereira/API_marketplace-#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.7"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3",
+    "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}
