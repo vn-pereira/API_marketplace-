@@ -26,7 +26,13 @@ module.exports = class userController{
 
     static insertUser(){
       return async (req, resp) =>{
-        const {idUser, nomeUser, emailUser, senhaUser, cpfUser, telefoneUser, enderecoUser} = req.body;
+        const {idUser, 
+              nomeUser, 
+              emailUser, 
+              senhaUser, 
+              cpfUser, 
+              telefoneUser, 
+              enderecoUser} = req.body;
          
         const user = new User({
             idUser,
@@ -39,15 +45,19 @@ module.exports = class userController{
         });
         await user.save((err) => {
             if (err) 
-            res.send(err);
+            resp.send(err);
           });
-          res.send("User creted successful!");
+          resp.send("User creted successful!");
         };
     }
 
     static updateUser(){
         return async(req, resp) =>{
-          const {nomeUser, emailUser, senhaUser, telefoneUser, enderecoUser} = req.body;   
+          const {nomeUser, 
+                emailUser, 
+                senhaUser, 
+                telefoneUser, 
+                enderecoUser} = req.body;   
             user.find({"nomeUser": id}, (err, result)=>{
                 if (err) 
                 return err;
@@ -63,6 +73,16 @@ module.exports = class userController{
             });
         };
     };
-    
+
+    static deleteUser(){
+      return async(req, resp) =>{
+        const id = req.params.id; 
+        await user.update(
+          {_id: id},
+          {$set: {deleteUserOn: new Date()}}
+        );
+        resp.send("User deleted");
+      };
+    }; 
 };
 
