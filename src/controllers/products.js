@@ -87,5 +87,20 @@ module.exports = class ProductController {
             resp.send("Product updated")
         };
     }
+
+    static insertProduct() {
+        return async (req, resp) => {
+            const body = req.body
+            await db.collection('inventory').insertOne({
+                idProvider: body.idProvider,
+                name: body.name,
+                description: body.description,
+                rating: body.rating,
+                price: body.price,
+                stock: body.stock
+              });
+            resp.send("Product updated")
+        };
+    }
 }
 

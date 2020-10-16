@@ -9,3 +9,4 @@ module.exports = (app) => {
     app.delete("/products/:id", ProductController.deleteProduct());
     app.put("/products/:id", ProductController.updateProduct());
 };
+

@@ -1,4 +1,4 @@
-const moongoose = require('mongoose')
+const mongoose = require('mongoose')
 
 const providerSchema = new mongoose.Schema({
     idProvider : String,
