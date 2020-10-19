@@ -2,17 +2,19 @@
 // Importing dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
-const routesProducts = require('./router/products');
-const routesProviders = require('./router/providers');
-const routesPurchases = require('./router/purchases');
-const routesUsersRoute = require('./router/usersRoute');
+const routesProducts = require("./router/products");
+const routesProviders = require("./router/providers");
+const routesPurchases = require("./router/purchases");
+const routesUsersRoute = require("./router/users");
 
 // Initializing the express application instance
 const app = express();
-routesProducts(app)
-routesProviders(app)
-routesPurchases(app)
-routesUsersRoute(app)
+app.use(express.json());
+
+routesProducts(app);
+routesProviders(app);
+routesPurchases(app);
+routesUsersRoute(app);
 
 // Applying middleware's to express app
 app.use(
@@ -42,5 +44,5 @@ const port = process.env.PORT || 3000;
 
 // server listener.
 app.listen(port, () => {
-  console.log("App Listening On:", port);
+  console.log("App Listening On: http://localhost:" + port);
 });
