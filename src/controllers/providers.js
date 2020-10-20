@@ -15,10 +15,14 @@ class ProviderController {
 
   static byProviderId() {
     return (req, resp) => {
-      Provider.find({ idProvider: req.params.id }, (err, provider) => {
-        if (err) return err;
+      Provider.findOne({ _id: req.params.id }, (err, provider) => {
+        if (err) resp.send(err);
         resp.send(provider);
       });
+      // Provider.findOne({ CNPJ: req.params.CNPJ }, (err, provider) => {
+      //   if (err) resp.send(err);
+      //   resp.send(provider);
+      // });
     };
   }
 
@@ -44,17 +48,12 @@ class ProviderController {
 
   static updateProvider() {
     return (req, resp) => {
-      Provider.update(
-        { CNPJ: req.params.CNPJ },
-        {
-          $set: {
-            name: req.body.name,
-            contact: req.body.contact,
-            providerAdress: req.body.providerAdress,
-          },
-        }
-      );
-      resp.send("Provider was updated");
+      try {
+        Provider.updateOne({ _id }, { ...req.body });
+        resp.send({ modified: true }).json();
+      } catch (err) {
+        resp.send(err);
+      }
     };
   }
 
