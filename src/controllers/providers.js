@@ -48,12 +48,27 @@ class ProviderController {
 
   static updateProvider() {
     return (req, resp) => {
-      try {
-        Provider.updateOne({ _id }, { ...req.body });
-        resp.send({ modified: true }).json();
-      } catch (err) {
-        resp.send(err);
-      }
+      console.log(req.params.id);
+      console.log(req.body);
+      const query = { _id: req.params.id };
+      Provider.updateOne(
+        query,
+        {
+          $set: {
+            name: req.body.name,
+            contact: req.body.contact,
+            providerAdress: req.body.providerAdress,
+          },
+        },
+        (err, doc) => {
+          if (err) {
+            resp.send(err);
+          }
+          console.log(doc);
+
+          resp.send("Data changed successfully!");
+        }
+      );
     };
   }
 
