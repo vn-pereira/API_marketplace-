@@ -15,7 +15,7 @@ module.exports = class ProductController {
 
   static getAllByProvider() {
     return (req, resp) => {
-      Product.find({ idProvider }, (err, products) => {
+      Product.find({ CNPJ: req.params.CNPJ }, (err, products) => {
         if (err) return err;
         resp.send(products);
       });
@@ -77,16 +77,28 @@ module.exports = class ProductController {
 
   static updateProduct() {
     return async (req, resp) => {
-      const id = req.params.id;
-      await Product.update(
-        providerCNPJ,
-        name,
-        description,
-        rating,
-        price,
-        stock
+      const query = { _id: req.params.id };
+      Product.updateOne(
+        query,
+        {
+          $set: {
+            providerCNPJ: req.body.providerCNPJ,
+            name: req.body.name,
+            description: req.body.description,
+            rating: req.body.rating,
+            price: req.body.price,
+            stock: req.body.stock,
+          },
+        },
+        (err, doc) => {
+          if (err) {
+            resp.send(err);
+          }
+          console.log(doc);
+
+          resp.send("Data changed successfully!");
+        }
       );
-      resp.send("Product updated");
     };
   }
 };

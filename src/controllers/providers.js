@@ -48,8 +48,6 @@ class ProviderController {
 
   static updateProvider() {
     return (req, resp) => {
-      console.log(req.params.id);
-      console.log(req.body);
       const query = { _id: req.params.id };
       Provider.updateOne(
         query,
@@ -74,10 +72,11 @@ class ProviderController {
 
   static deleteProvider() {
     return async (req, resp) => {
-      await Provider.findOneAndDelete({ CNPJ: req.body.CNPJ }, (err) => {
-        if (err) return err;
+      await Provider.findOneAndDelete({ _id: req.params.id }, (err) => {
+        if (err) {
+          console.log(err);
+        }
       });
-
       resp.send("Provider Deleted");
     };
   }

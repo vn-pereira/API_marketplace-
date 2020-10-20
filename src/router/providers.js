@@ -9,5 +9,5 @@ module.exports = (app) => {
 
   app.put("/providers/:id", ProviderController.updateProvider());
 
-  app.delete("/providers/:CNPJ", ProviderController.deleteProvider());
+  app.delete("/providers/:id", ProviderController.deleteProvider());
 };
