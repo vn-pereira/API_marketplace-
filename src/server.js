@@ -2,19 +2,14 @@
 // Importing dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
-const routesProducts = require("./router/products");
-const routesProviders = require("./router/providers");
-const routesPurchases = require("./router/purchases");
-const routesUsersRoute = require("./router/users");
 
 // Initializing the express application instance
 const app = express();
 app.use(express.json());
 
-routesProducts(app);
-routesProviders(app);
-routesPurchases(app);
-routesUsersRoute(app);
+// Importing API routes
+const routes = require("./router");
+routes(app);
 
 // Applying middleware's to express app
 app.use(
