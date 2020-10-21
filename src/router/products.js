@@ -4,7 +4,7 @@ module.exports = (app) => {
   app.get("/products", ProductController.getAllProducts());
   app.get("/products/:providerID", ProductController.getAllByProvider());
   app.get(
-    "/products/:idProvider/:idProduct",
+    "/products/:providerID/:productID",
     ProductController.getProductByProviderId()
   );
   app.post("/products/new-product", ProductController.createProduct());

@@ -37,11 +37,15 @@ module.exports = class ProductController {
 
   static getProductByProviderId() {
     return async (req, resp) => {
-      const idProduct = req.params.idProduct;
-      const idProvider = req.params.idProvider;
-      await Product.find({ _id: idProvider }, (err, products) => {
-        resp.send(products);
-      });
+      const providerID = req.params.providerID;
+      const productID = req.params.productID;
+      await Product.find(
+        { _id: productID, providerID: providerID },
+        (err, products) => {
+          if (err) resp.send(err);
+          resp.send(products);
+        }
+      );
     };
   }
 
@@ -58,16 +62,18 @@ module.exports = class ProductController {
       });
       await product.save((err) => {
         if (err) resp.send(err);
+        resp.send("Your product was added");
       });
-      resp.send("Your product was added");
     };
   }
 
   static deleteProduct() {
     return async (req, resp) => {
       const id = req.params.id;
-      await Product.update({ _id: id });
-      resp.send("Product deleted");
+      await Product.findOneAndDelete({ _id: id }, (err) => {
+        if (err) resp.send(err);
+        resp.send("Product deleted");
+      });
     };
   }
 
@@ -78,7 +84,6 @@ module.exports = class ProductController {
         query,
         {
           $set: {
-            providerCNPJ: req.body.providerCNPJ,
             name: req.body.name,
             description: req.body.description,
             rating: req.body.rating,
