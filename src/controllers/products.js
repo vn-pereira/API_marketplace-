@@ -1,7 +1,8 @@
 const mongoose = require("../config/database");
-
 const productSchema = require("../models/Product");
+
 const Product = new mongoose.model("Product", productSchema);
+const Provider = new mongoose.model("Provider", providerSchema);
 
 module.exports = class ProductController {
   static getAllProducts() {
@@ -32,11 +33,12 @@ module.exports = class ProductController {
     };
   }
 
-  static getByProductName() {
-    return (req, resp) => {
-      const name = req.params.name;
-      Product.find({ name }, (err, products) => {
-        if (err) resp.send(err);
+  static getProductByProviderId() {
+    return async (req, resp) => {
+      const idProduct = req.params.idProduct;
+      const idProvider = req.params.idProvider;
+      await Product.find({ _id: idProvider }, (err, products) => {
+        await Provider.find({})
         resp.send(products);
       });
     };
@@ -44,16 +46,9 @@ module.exports = class ProductController {
 
   static createProduct() {
     return async (req, resp) => {
-      const {
-        providerCNPJ,
-        name,
-        description,
-        rating,
-        price,
-        stock,
-      } = req.body;
+      const { providerID, name, description, rating, price, stock } = req.body;
       const product = new Product({
-        providerCNPJ,
+        providerID,
         name,
         description,
         rating,
