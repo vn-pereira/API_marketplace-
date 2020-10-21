@@ -2,7 +2,6 @@ const mongoose = require("../config/database");
 const productSchema = require("../models/Product");
 
 const Product = new mongoose.model("Product", productSchema);
-const Provider = new mongoose.model("Provider", providerSchema);
 
 module.exports = class ProductController {
   static getAllProducts() {
@@ -38,7 +37,6 @@ module.exports = class ProductController {
       const idProduct = req.params.idProduct;
       const idProvider = req.params.idProvider;
       await Product.find({ _id: idProvider }, (err, products) => {
-        await Provider.find({})
         resp.send(products);
       });
     };
