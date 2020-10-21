@@ -2,7 +2,7 @@ const ProductController = require("../controllers/products");
 
 module.exports = (app) => {
   app.get("/products", ProductController.getAllProducts());
-  app.get("/products/:idProvider", ProductController.getAllByProvider());
+  app.get("/products/:providerID", ProductController.getAllByProvider());
   app.get(
     "/products/:idProvider/:idProduct",
     ProductController.getProductByProviderId()

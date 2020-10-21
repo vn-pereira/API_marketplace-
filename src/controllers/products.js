@@ -14,11 +14,14 @@ module.exports = class ProductController {
   }
 
   static getAllByProvider() {
-    return (req, resp) => {
-      Product.find({ CNPJ: req.params.CNPJ }, (err, products) => {
-        if (err) return err;
-        resp.send(products);
-      });
+    return async (req, resp) => {
+      await Product.find(
+        { providerID: req.params.providerID },
+        (err, products) => {
+          if (err) resp.send(err);
+          resp.send(products);
+        }
+      );
     };
   }
 
