@@ -118,4 +118,4 @@ GET = LER | POST = CRIAR | PUT = EDITAR | DELETE = DELETAR
 ## LIVE DEMO
 
 Você pode realizar testes na nossa demonstração hospedada no Heroku.
-Para isso, basta colocar as rotas ao final do link: **https://enigmatic-earth-80179.herokuapp.com/**
+Para isso, basta colocar as rotas ao final do link: **https://limitless-cove-49173.herokuapp.com/**
