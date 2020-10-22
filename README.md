@@ -125,11 +125,11 @@ Build a REST API with the routes of a Marketplace.
 
 ## Client
 
-- **GET _/user/ list _:** Returns as an answer all active customers registered in the API bank; <br>
-- **GET (single user) _/user/:id _:** Returns as a response a single customer whose id is passed as a parameter in the URI (replacing the id); <br>
-- **POST _/new-user _:** Adds a new user to the API bank, the user's attributes must be sent through the request body in JSON format; <br>
-- **DELETE _/user/ delete /:id _:** Inactivates the user account in the database whose id is passed as a parameter in the URI (replacing the id); <br>
-- **PUT _/updateuser /:id _:** Changes the customer data, whose id was passed as a parameter in the URI (replacing the id). Changes must be passed through the request body in JSON format. <br> <br>
+- **GET _/user/list_:** Returns as an answer all active customers registered in the API bank; <br>
+- **GET (single user) _/user/:id_:** Returns as a response a single customer whose id is passed as a parameter in the URI (replacing the id); <br>
+- **POST _/new-user_:** Adds a new user to the API bank, the user's attributes must be sent through the request body in JSON format; <br>
+- **DELETE _/user/delete /:id_:** Inactivates the user account in the database whose id is passed as a parameter in the URI (replacing the id); <br>
+- **PUT _/updateuser/:id_:** Changes the customer data, whose id was passed as a parameter in the URI (replacing the id). Changes must be passed through the request body in JSON format. <br> <br>
 
 ## Providers
 
@@ -144,15 +144,15 @@ Build a REST API with the routes of a Marketplace.
 - **GET _/products_:** Returns as an answer all active products registered in the API bank; <br>
 - **GET (by supplier) _/products/:providerID_:** Returns the products registered by the supplier, whose id is passed as a parameter in the URI (replacing the id);
 - **GET (single product) _/products/:providerID /:productID_:** Returns as a response the product registered by the supplier, whose id of both are passed as a parameter in the URI; <br>
-- **POST _/products/ new-product_:** Add a new product in the API bank, the product attributes must be sent through the request body in JSON format; <br>
+- **POST _/products/new-product_:** Add a new product in the API bank, the product attributes must be sent through the request body in JSON format; <br>
 - **DELETE _/products/:id_:** Make inactive the product whose id is passed as a parameter in the URI; <br>
 - **PUT _/products/:id_:** Changes the product data, whose id was passed as a parameter in the URI (replacing the id). Changes must be passed through the request body in JSON format. <br> <br>
 
 ## Purchase
 
-- **GET _/purchases/ list_:** Returns as an answer all active purchases registered in the API bank; <br>
-- **GET (single purchase) _/purchases/ product /:id_:** Returns as a response a single purchase whose associated product id is passed as a parameter in the URI (replacing the id); <br>
-- **GET (single purchase) _/purchases/ user /:id_:** Returns as a response a single purchase whose associated customer id is passed as a parameter in the URI (replacing the id); <br>
+- **GET _/purchases/list_:** Returns as an answer all active purchases registered in the API bank; <br>
+- **GET (single purchase) _/purchases/product /:id_:** Returns as a response a single purchase whose associated product id is passed as a parameter in the URI (replacing the id); <br>
+- **GET (single purchase) _/purchases/user /:id_:** Returns as a response a single purchase whose associated customer id is passed as a parameter in the URI (replacing the id); <br>
 - **POST _/new-purchase_:** Adds a new purchase in the API bank, the product attributes must be sent through the request body in JSON format (must be informed, the id of the customer who is making the purchase , product supplier id and product id);
 - **PUT _/purchase/:id_:** Disables the purchase whose id was passed as a parameter in the URI (replacing the id). <br> <br>
 
