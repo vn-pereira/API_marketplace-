@@ -6,6 +6,8 @@ const purchaseSchema = new mongoose.Schema({
   idProvider: String,
   purchaseValue: Number,
   purchaseDate: Date,
+  active: Boolean,
+  cancelledPurchaseOn: Date,
 });
 
 module.exports = purchaseSchema;

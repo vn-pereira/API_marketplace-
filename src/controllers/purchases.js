@@ -5,7 +5,7 @@ const Purchase = new mongoose.model("Purchase", purchaseSchema);
 module.exports = class PurchaseController {
   static getAll() {
     return (req, resp) => {
-      Purchase.find({}, (err, purchases) => {
+      Purchase.find({ active: true }, (err, purchases) => {
         if (err) return err;
         resp.send(purchases);
       });
@@ -38,6 +38,7 @@ module.exports = class PurchaseController {
         idProvider,
         purchaseValue,
         purchaseDate: new Date(),
+        active: true,
       });
       await purchase.save((err) => {
         if (err) res.send(err);
@@ -51,7 +52,7 @@ module.exports = class PurchaseController {
       const id = req.params.id;
       await Purchase.update(
         { _id: id },
-        { $set: { deletedPurchaseOn: new Date() } }
+        { $set: { active: false, cancelledPurchaseOn: new Date() } }
       );
       res.send("Purchase deleted.");
     };
