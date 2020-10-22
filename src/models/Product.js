@@ -7,6 +7,8 @@ const productSchema = new mongoose.Schema({
   rating: String,
   price: String,
   stock: Number,
+  active: Boolean,
+  deletedOn: Date,
 });
 
 module.exports = productSchema;

@@ -6,7 +6,7 @@ const Provider = new mongoose.model("Provider", providerSchema);
 class ProviderController {
   static allProviders() {
     return (req, resp) => {
-      Provider.find({}, (err, providers) => {
+      Provider.find({ active: true }, (err, providers) => {
         if (err) return err;
         resp.send(providers);
       });
@@ -19,23 +19,28 @@ class ProviderController {
         if (err) resp.send(err);
         resp.send(provider);
       });
-      // Provider.findOne({ CNPJ: req.params.CNPJ }, (err, provider) => {
-      //   if (err) resp.send(err);
-      //   resp.send(provider);
-      // });
     };
   }
 
   static createProvider() {
     return async (req, resp) => {
-      const { name, contact, providerName, CNPJ, providerAdress } = req.body;
-
-      const provider = new Provider({
-        name,
+      const {
+        companyName,
+        legalName,
         contact,
         providerName,
         CNPJ,
         providerAdress,
+      } = req.body;
+
+      const provider = new Provider({
+        companyName,
+        legalName,
+        contact,
+        providerName,
+        CNPJ,
+        providerAdress,
+        active: true,
       });
 
       await provider.save((err) => {
@@ -53,7 +58,7 @@ class ProviderController {
         query,
         {
           $set: {
-            name: req.body.name,
+            companyName: req.body.name,
             contact: req.body.contact,
             providerAdress: req.body.providerAdress,
           },
@@ -72,11 +77,21 @@ class ProviderController {
 
   static deleteProvider() {
     return async (req, resp) => {
-      await Provider.findOneAndDelete({ _id: req.params.id }, (err) => {
-        if (err) {
-          console.log(err);
+      const query = { _id: req.params.id };
+      await Provider.updateOne(
+        query,
+        {
+          $set: {
+            active: false,
+            deletedOn: new Date(),
+          },
+        },
+        (err) => {
+          if (err) {
+            console.log(err);
+          }
         }
-      });
+      );
       resp.send("Provider Deleted");
     };
   }

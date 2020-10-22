@@ -6,7 +6,7 @@ const Product = new mongoose.model("Product", productSchema);
 module.exports = class ProductController {
   static getAllProducts() {
     return (req, resp) => {
-      Product.find({}, (err, products) => {
+      Product.find({ active: true }, (err, products) => {
         if (err) return err;
         resp.send(products);
       });
@@ -59,6 +59,7 @@ module.exports = class ProductController {
         rating,
         price,
         stock,
+        active: true,
       });
       await product.save((err) => {
         if (err) resp.send(err);
@@ -69,11 +70,20 @@ module.exports = class ProductController {
 
   static deleteProduct() {
     return async (req, resp) => {
-      const id = req.params.id;
-      await Product.findOneAndDelete({ _id: id }, (err) => {
-        if (err) resp.send(err);
-        resp.send("Product deleted");
-      });
+      const query = { _id: req.params.id };
+      await Product.updateOne(
+        query,
+        {
+          $set: {
+            active: false,
+            deleteOn: new Date(),
+          },
+        },
+        (err) => {
+          if (err) resp.send(err);
+          resp.send("Product deleted");
+        }
+      );
     };
   }
 
