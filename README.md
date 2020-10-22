@@ -17,7 +17,6 @@ Build a REST API with the routes of a Marketplace.
 ## Dependencies
 
 - **Express:** Web framework that creates route abstractions, middleware and many other functions to facilitate  the creation of API's;<br>
-- **Bcrypt:** A library for hashing passwords;<br>
 - **Dotenv:** Module that loads environment variables from an .env file to process.env. Store information in the  environment separate from the code itself;<br>
 - **Mongoose:** An object modeling tool, targeted to MONGODB, designed to work in asynchronous environments.  <br>
 - **Body-parser:** Module for converting the requisition body to various formats.<br>
@@ -52,7 +51,6 @@ Build a REST API with the routes of a Marketplace.
 - _Address:_ Address associated with the supplier in the API; <br> 
 - _Password:_ Password encrypted using a hash function; <br> 
 - _Active:_ Status of the supplier's account, true for active and false for inactive; <br> - _Date of inactivation of the account:_ This property is only activated in case of deletion of the account, storing the moment when the supplier canceled the account; <br> 
-- _Salto:_ Unique identifier of the method used during the hash function. <br> <br>
 
 ### **Product:**
 - _ID of the supplier:_ For location of the supplier's registration; <br> 
@@ -74,50 +72,6 @@ Build a REST API with the routes of a Marketplace.
 - _Active:_ Status of the purchase, being true for active and false for inactive; 
 - _Cancellation date:_ This property is only activated in case of inactivation, storing the moment when the customer / supplier canceled the purchase; <br> <br>
 
-# Routes
-
-    GET = READ | POST = CREATE | PUT = EDIT | DELETE = DELETE
-
-## Client
-
-- **GET _/user/list_:** Returns as an answer all active customers registered in the API bank; <br> 
-- **GET(single user) _/user/:id_:** Returns as a response a single customer whose id is passed as a parameter in the URI (replacing the id); <br> 
-- **POST _/new-user_:** Adds a new user to the API bank, the user's attributes must be sent through the request body in JSON format; <br> 
-- **DELETE _/user/delete/:id_:** Inactivates the user account in the database whose id is passed as a parameter in the URI (replacing the id); <br> 
-- **PUT _/update-user/:id_:** Changes the customer data, whose id was passed as a parameter in the URI (replacing the id). Changes must be passed through the request body in JSON format. <br> <br>
-
-**Provider:**
-
-- _Name:_ Name associated with the supplier in the API; <br>
-- _Corporate name:_ Corporate name associated with the supplier in the API; <br>
-- _CNPJ:_ Document associated with the supplier in the API; <br>
-- _Email:_ Email associated with the supplier in the API; <br
-- _Telephone:_ Telephone associated with the supplier in the API; <br>
-- _Address:_ Address associated with the supplier in the API; <br>
-- _Password:_ Password encrypted using a hash function; <br>
-- _Active:_ Status of the supplier's account, true for active and false for inactive; <br>
-- _Date of inactivation of the account: _ This property is only activated in case of deletion of the account, storing the moment when the supplier canceled the account; <br>
-- _Jump:_ Unique identifier of the method used during the hash function. <br> <br>
-
-**Product:**
-
-- _ID of the supplier:_ For location of the supplier's registration; <br>
-- _Name:_ Name associated with the product in the API; <br>
-- _Description:_ Product description; <br
-- _Assessment:_ Evaluation of the product by customers; <br>
-- _Price:_ Price associated with the respective product; <br>
-- _Stock:_ Quantity of the product supplied for sale; <br>
-- _Active:_ Product status, being true for active and false for inactive; <br>
-- _Date of inactivation of the product:_ This property is only activated in case of inactivation, storing the moment when the supplier canceled the exhibition; <br>
-
-**Purchase:**
-- _ID of the customer:_ To locate the customer's registration;
-- _Product ID:_ To locate the product registration; <br>
-- _ID of the supplier:_ For location of the supplier's registration; <br>
-- _Value of purchase:_ Product description; <br>
-- _dataCompra:_ Product evaluation by customers; <br>
-- _Active:_ Status of the purchase, being true for active and false for inactive;
-- _Cancellation date:_ This property is only activated in case of inactivation, storing the moment when the customer / supplier canceled the purchase; <br> <br>
 
 # Routes
 
