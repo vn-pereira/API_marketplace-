@@ -9,6 +9,7 @@ const productSchema = new mongoose.Schema({
   stock: Number,
   active: Boolean,
   deletedOn: Date,
+  images: Array,
 });
 
 module.exports = productSchema;

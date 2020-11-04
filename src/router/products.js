@@ -8,6 +8,7 @@ module.exports = (app) => {
     ProductController.getProductByProviderId()
   );
   app.post("/products/new-product", ProductController.createProduct());
+  app.put("/products/updateAll", ProductController.updateAllProducts());
   app.put("/products/:id", ProductController.updateProduct());
   app.delete("/products/:id", ProductController.deleteProduct());
 };

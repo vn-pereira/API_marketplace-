@@ -59,6 +59,7 @@ module.exports = class ProductController {
         rating,
         price,
         stock,
+        images,
         active: true,
       });
       await product.save((err) => {
@@ -99,6 +100,7 @@ module.exports = class ProductController {
             rating: req.body.rating,
             price: req.body.price,
             stock: req.body.stock,
+            images: req.body.images,
           },
         },
         (err, doc) => {
@@ -107,6 +109,24 @@ module.exports = class ProductController {
           }
           console.log(doc);
 
+          resp.send("Data changed successfully!");
+        }
+      );
+    };
+  }
+
+  static updateAllProducts() {
+    return async (req, resp) => {
+      await Product.updateMany(
+        {
+          $set: {
+            ...req.body,
+          },
+        },
+        (err) => {
+          if (err) {
+            resp.send(err);
+          }
           resp.send("Data changed successfully!");
         }
       );
