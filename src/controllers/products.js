@@ -35,6 +35,19 @@ module.exports = class ProductController {
     };
   }
 
+  static getProductByCategory() {
+    return async (req, resp) => {
+      const productID = req.params.productID;
+      const category = req.params.category;
+      await Product.find(
+        {id: productID, category}, (err, products) => {
+          if (err) resp.send(err);
+          resp.send(products)
+        }
+      );
+    };
+  }
+
   static getProductByProviderId() {
     return async (req, resp) => {
       const providerID = req.params.providerID;
@@ -56,6 +69,7 @@ module.exports = class ProductController {
         providerID,
         name,
         description,
+        category,
         rating,
         price,
         stock,
@@ -97,6 +111,7 @@ module.exports = class ProductController {
           $set: {
             name: req.body.name,
             description: req.body.description,
+            category:req.body.category,
             rating: req.body.rating,
             price: req.body.price,
             stock: req.body.stock,
